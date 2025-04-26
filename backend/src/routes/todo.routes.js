@@ -1,14 +1,14 @@
 import {Router} from "express";
-import {addtodo,readtodo,deleteTodo,updateTodo} from "../controllers/todo.controller.js";
+import {addtodo,readtodo,deleteTodo,updateTodo} from "../controllers/todo.controllers.js";
 
 
 
-const todoRouter = Router();
+const router = Router();
 
-todoRouter.route("/add").post(addtodo)
-todoRouter.route("/read").get(readtodo)
-todoRouter.route("/delete/:id").delete(deleteTodo)
-todoRouter.route("/update/:id").put(updateTodo)
+router.route("/add").post(addtodo)
+router.route("/read").get(readtodo)
+router.route("/delete/:id").delete(deleteTodo)
+router.route("/update/:id").put(updateTodo)
 
 
-export default todoRouter
+export default router

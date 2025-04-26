@@ -1,17 +1,7 @@
-import dotenv from 'dotenv'
 import app from '../app.js';
 import { dbConnect } from './db/index.js';
-import cors from "cors"
 
 
-app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true
-}))
-
-dotenv.config({
-    path: './.env'
-})
 
 dbConnect()
 .then(()=>{
