@@ -5,20 +5,12 @@ import {Todo} from '../models/todo.model.js';
 
 
 const addtodo = asyncHandler(async(req,res)=>{
-    //get user details from frontend
-    //validation- not empty
-    //return response
-
     const {title,description} = req.body
-    // console.log("email: ", email);
   
-    if(
-      [title,description].some((field)=> field?.trim() === "")
-    ){
+    if([title,description].some((field)=> field?.trim() === "")){
       throw new ApiError(400, "All fields are required")
     }
-  
-  
+     
    const todo = await Todo.create({
       title,
       description
@@ -95,6 +87,19 @@ const updateTodo = asyncHandler(async (req, res, next) => {
 
 
 
+const compeleteTodo = asyncHandler(async (req ,res)=>{
+  const { id } = req.params;
+  
+  const user = await Todo.findByIdAndUpdate(id)
+  if(!user){
+    throw new ApiError(404, "No Todo found with this id")
+  }
 
-  export {addtodo,readtodo,deleteTodo,updateTodo}
+
+})
+
+
+
+
+  export {addtodo,readtodo,deleteTodo,updateTodo, compeleteTodo}
 
