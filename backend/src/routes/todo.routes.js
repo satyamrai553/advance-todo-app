@@ -1,14 +1,18 @@
 import {Router} from "express";
-import {addtodo,readtodo,deleteTodo,updateTodo,completeTodo} from "../controllers/todo.controllers.js";
+import {addtodo,getTodos,deleteTodo,updateTodo,completeTodo} from "../controllers/todo.controllers.js";
+import { verifyJWT } from "../middlewares/auth.middlewares.js";
 
 
 
 const router = Router();
 
+//secured routes
+router.use(verifyJWT)
+
 router.route("/add").post(addtodo)
-router.route("/read").get(readtodo)
-router.route("/delete/:id").delete(deleteTodo)
+router.route("/get").get(getTodos)
 router.route("complete/:id").post(completeTodo)
+router.route("/delete/:id").delete(deleteTodo)
 router.route("/update/:id").put(updateTodo)
 
 
